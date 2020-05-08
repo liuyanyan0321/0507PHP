@@ -7,27 +7,33 @@
         $array = str_split($result);
         $max =  max(array_count_values($array)); // 各値の出現回数を数える// 最大の出現回数を取得する
         //自動発生の数字
-        $pc=[];
+        //$pc=[1,2,4];
         for($i=0;$i<3;$i++){
             $pc[$i]=rand(1,9);
         }
         if(strlen($result)<=3 && $max===1){
-            //配列に変更
-            // if($result==="123"){
-            // }
-            // else{
-            //      echo "正解です\n";
-            //     break;
-            // }
             if($array==$pc){
-                echo "正解です\n";
+                echo "正解です".$i."回目でクリアです\n";
                  break;
             }
             else{
+                $int=0;
+                for($l=0;$l<3;$l++){
+                    if($array[$l]===$pc[$l]){
+                        $int++;
+                    }
+                }
+                $blow=0;
+                for($m=0;$m<3;$m++){
+                    for($n=0;$n<3;$n++){
+                        if($m!=$n && $pc[$m]==$array[$n]){
+                            $blow++;
+                        }
+                    }
+                }
                 echo "□■□■□■□■□■□■□■□■□■□■□■□■□■□■\n";
                 echo $i."回目のチャレンジ！\n";
-                echo "Hit:0 Blow:2\n";
-
+                echo $int."HIT".$blow."Blow\n";
             }
         }
         else{
